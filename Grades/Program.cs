@@ -14,8 +14,13 @@ namespace Grades
             book.AddGrade(9.1f);
             book.AddGrade(4.5f);
             book.AddGrade(7.4f);
+
+
             GradeStatistics stats = book.ComputeStatistics();
 
+            Console.WriteLine(stats.AvergeGrade);
+            Console.WriteLine(stats.AvergeGrade);
+            Console.WriteLine(stats.AvergeGrade);
         }
     }
 }

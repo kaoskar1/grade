@@ -30,6 +30,11 @@ namespace Grades
             float sum = 0f;
 
             foreach (float grade in grades) {
+                if (grade > stats.HighGrade)
+                {
+                    stats.HighGrade = Math.Max(grade, stats.HighGrade);
+                    stats.LowestGrade = Math.Min(grade, stats.LowestGrade);
+                }
                 sum += grade;
             }
             stats.AvergeGrade = sum / grades.Count;
