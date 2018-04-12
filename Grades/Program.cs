@@ -11,8 +11,8 @@ namespace Grades
 
         static void GiveBookAName(GradeBook book)
         {
-            book = GradeBook();
-            book.Name = "BillBorns Manualen";
+            //book = new GradeBook();
+            //book.Name = "BillBorns Manualen";
         }
  
         static void IncrementNumber(int number)
@@ -22,20 +22,13 @@ namespace Grades
 
     static void Main(string[] args)
         {
+            string name1 = "Neto Borges";
+            string name2 = "neto borges";
 
+            bool areEqual = name1.Equals(name2, StringComparison.CurrentCultureIgnoreCase);
+            Console.WriteLine(areEqual);
 
-            GradeBook g1 = new GradeBook();
-            GradeBook g2 = g1;
-
-
-            GiveBookAName(g2);
-            Console.WriteLine(g2.Name);
-            //hata aik 
-
-            int x1 = 4;
-            IncrementNumber(x1);
-
-            Console.WriteLine(x1);
+            PassByValueAndRef();
 
 
             //GradeBook book = new GradeBook();
@@ -49,6 +42,21 @@ namespace Grades
             //Console.WriteLine(stats.AvergeGrade);
             //Console.WriteLine(stats.AvergeGrade);
             //Console.WriteLine(stats.AvergeGrade);
+        }
+
+        private static void PassByValueAndRef()
+        {
+            GradeBook g1 = new GradeBook();
+            GradeBook g2 = g1;
+
+
+            GiveBookAName(g2);
+            Console.WriteLine(g2.Name);
+
+            DateTime d;
+            int x1 = 4;
+            IncrementNumber(x1);
+            Console.WriteLine(x1);
         }
     }
 
