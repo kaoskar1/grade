@@ -11,23 +11,26 @@ namespace Grades
     {
 
 
-    static void Main(string[] args)
+        static void Main(string[] args)
         {
 
 
-         GradeBook book = new GradeBook();
-         book.AddGrade(91f);
-         book.AddGrade(89.1f);
-         book.AddGrade(75f);
+            GradeBook book = new GradeBook();
+            book.AddGrade(91f);
+            book.AddGrade(89.1f);
+            book.AddGrade(75f);
 
 
-         GradeStatistics stats = book.ComputeStatistics();
+            GradeStatistics stats = book.ComputeStatistics();
 
-          WriteBytes(stats.AvergeGrade);
 
-         Console.WriteLine(stats.AvergeGrade);
-         Console.WriteLine(stats.HighGrade);
-         Console.WriteLine(stats.LowestGrade);
+            int number = 20;
+            WriteBytes(20);
+            WriteBytes(stats.AvergeGrade);
+
+            Console.WriteLine(stats.AvergeGrade);
+            Console.WriteLine(stats.HighGrade);
+            Console.WriteLine(stats.LowestGrade);
         }
 
         private static void WriteBytes(float value)
@@ -35,7 +38,7 @@ namespace Grades
             byte[] bytes = BitConverter.GetBytes(value);
             foreach (byte b in bytes)
             {
-                Console.Write("0x{0}", b );
+                Console.Write("0x{0:X}", b);
             }
             Console.WriteLine();
         }
