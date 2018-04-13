@@ -14,7 +14,7 @@ namespace Grades
             LowestGrade = float.MaxValue;
         }
 
-        public float HighGrade;
+      public float HighGrade;
       public float AvergeGrade;
       public float LowestGrade;
 

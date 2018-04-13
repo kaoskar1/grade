@@ -26,8 +26,8 @@ namespace Grades
           WriteBytes(stats.AvergeGrade);
 
          Console.WriteLine(stats.AvergeGrade);
-         Console.WriteLine(stats.AvergeGrade);
-         Console.WriteLine(stats.AvergeGrade);
+         Console.WriteLine(stats.HighGrade);
+         Console.WriteLine(stats.LowestGrade);
         }
 
         private static void WriteBytes(float value)
@@ -35,7 +35,7 @@ namespace Grades
             byte[] bytes = BitConverter.GetBytes(value);
             foreach (byte b in bytes)
             {
-                Console.Write("0x {0}, b ");
+                Console.Write("0x{0}", b );
             }
             Console.WriteLine();
         }
