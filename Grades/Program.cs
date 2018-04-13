@@ -3,60 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Speech.Synthesis;
 
 namespace Grades
 {
     class Program
     {
 
-        static void GiveBookAName(GradeBook book)
-        {
-            //book = new GradeBook();
-            //book.Name = "BillBorns Manualen";
-        }
- 
-        static void IncrementNumber(int number)
-          {
-                number += 1;
-          }
 
     static void Main(string[] args)
         {
-            string name1 = "Neto Borges";
-            string name2 = "neto borges";
-
-            bool areEqual = name1.Equals(name2, StringComparison.CurrentCultureIgnoreCase);
-            Console.WriteLine(areEqual);
-
-            PassByValueAndRef();
 
 
-            //GradeBook book = new GradeBook();
-            //book.AddGrade(9.1f);
-            //book.AddGrade(4.5f);
-            //book.AddGrade(7.4f);
+         GradeBook book = new GradeBook();
+         book.AddGrade(91f);
+         book.AddGrade(89.1f);
+         book.AddGrade(75f);
 
 
-            //GradeStatistics stats = book.ComputeStatistics();
+         GradeStatistics stats = book.ComputeStatistics();
 
-            //Console.WriteLine(stats.AvergeGrade);
-            //Console.WriteLine(stats.AvergeGrade);
-            //Console.WriteLine(stats.AvergeGrade);
+          WriteBytes(stats.AvergeGrade);
+
+         Console.WriteLine(stats.AvergeGrade);
+         Console.WriteLine(stats.AvergeGrade);
+         Console.WriteLine(stats.AvergeGrade);
         }
 
-        private static void PassByValueAndRef()
+        private static void WriteBytes(float value)
         {
-            GradeBook g1 = new GradeBook();
-            GradeBook g2 = g1;
-
-
-            GiveBookAName(g2);
-            Console.WriteLine(g2.Name);
-
-            DateTime d;
-            int x1 = 4;
-            IncrementNumber(x1);
-            Console.WriteLine(x1);
+            byte[] bytes = BitConverter.GetBytes(value);
+            foreach (byte b in bytes)
+            {
+                Console.Write("0x {0}, b ");
+            }
+            Console.WriteLine();
         }
     }
 

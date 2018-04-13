@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Grades;
 
 namespace Grades
 {
-    class GradeBook
+   public class GradeBook
     {
         public GradeBook()
         {
@@ -30,7 +31,7 @@ namespace Grades
             float sum = 0f;
 
             foreach (float grade in grades) {
-                if (grade > stats.HighGrade)
+               
                 {
                     stats.HighGrade = Math.Max(grade, stats.HighGrade);
                     stats.LowestGrade = Math.Min(grade, stats.LowestGrade);
