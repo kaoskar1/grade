@@ -12,14 +12,14 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-            GradeBook book = new GradeBook("Black Book");
+            IGradeTracker book = CreateGradeBook();
 
             try
             {
-               using(FileStream stream = File.Open("grades.txt", FileMode.Open))
-               using (StreamReader  reader = new StreamReader(stream)) 
+                using (FileStream stream = File.Open("grades.txt", FileMode.Open))
+                using (StreamReader reader = new StreamReader(stream))
                 {
-                
+
                     string line = reader.ReadLine();
                     while (line != null)
                     {
@@ -30,29 +30,30 @@ namespace Grades
 
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
 
-//                Console.WriteLine("File not found din hound");
+                //                Console.WriteLine("File not found din hound");
                 return;
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
 
                 Console.WriteLine("none vaild access");
                 return;
             }
-
-
-            book.WriteGrade(Console.Out);
+            foreach (float grade in book)
+            {
+                Console.WriteLine();
+            }
 
             try
             {
 
-                Console.WriteLine("PLease skriv nogt do ");
-                book.Name = Console.ReadLine();
+                //Console.WriteLine("PLease skriv nogt do ");
+                //book.Name = Console.ReadLine();
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 Console.WriteLine("felaktigt namn");
             }
@@ -64,6 +65,12 @@ namespace Grades
             Console.WriteLine(stats.HighGrade);
             Console.WriteLine(stats.LowestGrade);
             Console.WriteLine("{0} {1}", stats.LetterGrade, stats.Descprition);
+        }
+
+        private static IGradeTracker CreateGradeBook()
+        {
+            IGradeTracker  book = new ThrowAwayGradeBook("Scotts baok");
+            return new ThrowAwayGradeBook("barrfens");
         }
     }
 }

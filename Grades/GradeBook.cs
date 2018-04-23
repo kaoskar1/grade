@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,15 +9,27 @@ using Grades;
 
 namespace Grades
 {
-    public class GradeBook
+    public  class GradeBook : GradeTracker 
     {
         public GradeBook(string name = "There is No Name")
         {
+            Console.WriteLine("gradebok bajen");
+
             Name = name;
             _grades = new List<float>();
         }
 
-        public void AddGrade(float grade)
+        public override IEnumerator GetEnumerator()
+        {
+            return _grades.GetEnumerator(); 
+        }
+
+        public override void DoSomething()
+        {
+            
+        }
+
+        public override void AddGrade(float grade)
         {
             
             if (grade >= 0 && grade <= 100)
@@ -25,8 +38,10 @@ namespace Grades
             }
         }
         
-        public GradeStatistics ComputeStatistics()
+        public override GradeStatistics ComputeStatistics()
         {
+            Console.WriteLine("GradeBook Compute");
+
             GradeStatistics stats = new GradeStatistics();
             float sum = 0f;
 
@@ -45,7 +60,7 @@ namespace Grades
 
 
 
-        public void WriteGrade(TextWriter textWriter)
+        public override void WriteGrade(TextWriter textWriter)
         {
             textWriter.WriteLine("BETYG BREEE:");
 
@@ -59,38 +74,9 @@ namespace Grades
             textWriter.WriteLine("----------------");
         }
 
-        private string _name;
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-
-
-                if (String.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Hata alla f;r du kan inte skriva");
-                }
-                if (_name != value)
-                {
-                    var oldValue = _name;
-                    _name = value;
-                    if (NameChanged != null)
-                    {
-                        NameChangedEventArgs args = new NameChangedEventArgs();
-                        args.OldValue = oldValue;
-                        args.NewValue = value;
-                        NameChanged(this, args);
-                    }
-                }
-            }
-        }
-
-        public event NameChangedDelegate NameChanged;
-        private List<float> _grades;
+        //private string _name;
+       
+        protected List<float> _grades;
     }
 
 }
